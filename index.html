@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מדריך למשתמש - מערכת סקרים חכמה</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out, opacity 0.3s ease-in-out;
+            opacity: 0;
+        }
+        
+        .accordion-content.active {
+            opacity: 1;
+        }
+
+        .prompt-box {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            position: relative;
+        }
+
+        /* Toast notification styling */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #10b981;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 50;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s, bottom 0.3s;
+        }
+
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 50px;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen py-10 px-4 sm:px-6 lg:px-8 relative">
+
+    <div class="max-w-3xl mx-auto">
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <div class="inline-flex items-center justify-center p-3 bg-blue-100 rounded-full mb-4">
+                <svg xmlns="http://www.w3.org/polymorphic" class="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+            </div>
+            <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+                ניהול סקרים בעזרת בינה מלאכותית
+            </h1>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                המערכת תוכננה כך שתהיה חכמה וגמישה. <strong class="text-blue-600">אתם לא צריכים לדעת לכתוב אפילו שורת קוד אחת!</strong> כדי לבצע שינויים, פשוט נעזרים בבינה מלאכותית ועוקבים אחר השלבים הבאים:
+            </p>
+        </header>
+
+        <!-- Steps Container -->
+        <div class="space-y-4">
+
+            <!-- Step 1 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <button onclick="toggleAccordion('step1')" class="w-full px-6 py-5 flex items-center justify-between focus:outline-none hover:bg-slate-50 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 flex items-center justify-center bg-blue-600 text-white font-bold rounded-full text-lg shadow-inner">
+                            1
+                        </div>
+                        <h2 class="text-xl font-bold text-slate-800 text-right">הוספת כפתור או שאלה בעזרת AI</h2>
+                    </div>
+                    <svg id="icon-step1" class="w-6 h-6 text-slate-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                
+                <div id="content-step1" class="accordion-content">
+                    <div class="px-6 pb-6 pt-2 border-t border-slate-100">
+                        <p class="mb-4 text-slate-600">במקום להסתבך עם עריכת קוד ה-HTML בעצמכם, פעלו לפי 3 השלבים הפשוטים הבאים:</p>
+                        
+                        <ol class="list-decimal list-inside space-y-6 text-slate-700">
+                            <li class="font-medium">
+                                <span class="font-bold text-slate-900">העתקת הקוד הקיים:</span> גשו לגיליון "הגדרות", לחצו פעמיים על תא <strong class="text-blue-600 bg-blue-50 px-1 rounded">B8</strong> (התא האפור עם הקוד) והעתיקו את כל הטקסט שבתוכו.
+                            </li>
+                            
+                            <li class="font-medium">
+                                <span class="font-bold text-slate-900">בקשו מהבינה המלאכותית:</span> פתחו את כלי ה-AI המועדף עליכם (ChatGPT, קלוד וכו'), והדביקו לו את אחת מ"תבניות הבקשה" הבאות:
+                                
+                                <div class="mt-4 space-y-4 pr-6 border-r-2 border-slate-200">
+                                    <!-- Prompt A -->
+                                    <div class="prompt-box rounded-lg p-4 shadow-sm relative group">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <span class="text-sm font-semibold text-emerald-400">💬 תבנית להוספת כפתור (למשל: "גרוע")</span>
+                                            <button onclick="copyToClipboard('prompt1')" class="text-slate-400 hover:text-white transition-colors flex items-center gap-1 text-sm bg-slate-700/50 px-2 py-1 rounded">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                                העתק
+                                            </button>
+                                        </div>
+                                        <p id="prompt1" class="text-slate-300 font-light leading-relaxed whitespace-pre-line dir-rtl">הנה קוד HTML של סקר במייל.
+[הדבק כאן את הקוד שהעתקת מתא B8]
+אנא הוסף לכל השאלות כפתור הצבעה רביעי. הטקסט על הכפתור יהיה 'גרוע', והערך של ההצבעה שלו בקישור צריך להיות vote=4. החזר לי את הקוד המלא והמתוקן בבקשה.</p>
+                                    </div>
+
+                                    <!-- Prompt B -->
+                                    <div class="prompt-box rounded-lg p-4 shadow-sm relative group">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <span class="text-sm font-semibold text-sky-400">💬 תבנית להוספת שאלת סקר חדשה</span>
+                                            <button onclick="copyToClipboard('prompt2')" class="text-slate-400 hover:text-white transition-colors flex items-center gap-1 text-sm bg-slate-700/50 px-2 py-1 rounded">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                                העתק
+                                            </button>
+                                        </div>
+                                        <p id="prompt2" class="text-slate-300 font-light leading-relaxed whitespace-pre-line dir-rtl">הנה קוד HTML של סקר במייל.
+[הדבק כאן את הקוד שהעתקת מתא B8]
+אנא הוסף שאלה חדשה לתחתית הסקר. השאלה תהיה: 'איך תדרג את מהירות המענה שלנו?'. מזהה הסקר שלה בקישור (poll_id) יהיה 'שאלה_11'. הוסף לה 3 כפתורים בדיוק כמו בשאר השאלות בסקר (מצוין=1, בינוני=2, טעון שיפור=3). החזר לי את הקוד המלא והמתוקן.</p>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="font-medium">
+                                <span class="font-bold text-slate-900">הדבקה חזרה בגיליון:</span> העתיקו את הקוד החדש שהבינה המלאכותית יצרה, והדביקו אותו חזרה בתוך תא <strong class="text-blue-600 bg-blue-50 px-1 rounded">B8</strong> (במקום התוכן הישן).
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <button onclick="toggleAccordion('step2')" class="w-full px-6 py-5 flex items-center justify-between focus:outline-none hover:bg-slate-50 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 flex items-center justify-center bg-indigo-600 text-white font-bold rounded-full text-lg shadow-inner">
+                            2
+                        </div>
+                        <h2 class="text-xl font-bold text-slate-800 text-right">עדכון המערכת לאחר השינוי</h2>
+                    </div>
+                    <svg id="icon-step2" class="w-6 h-6 text-slate-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                
+                <div id="content-step2" class="accordion-content">
+                    <div class="px-6 pb-6 pt-2 border-t border-slate-100 space-y-6">
+                        <p class="text-slate-600">לאחר שהדבקתם את הקוד החדש, צריך לעדכן את המערכת כדי שתדע לקרוא את השינויים שעשה ה-AI:</p>
+                        
+                        <div class="grid gap-6 md:grid-cols-2">
+                            <!-- Option A -->
+                            <div class="bg-slate-50 rounded-xl p-5 border border-slate-100 shadow-sm">
+                                <div class="flex items-center gap-2 mb-3 text-indigo-700">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                    <h3 class="font-bold text-lg">אם הוספתם שאלות חדשות</h3>
+                                </div>
+                                <p class="text-sm font-semibold text-slate-500 mb-2">פעולת קסם אוטומטית:</p>
+                                <ul class="space-y-2 text-sm text-slate-700">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-indigo-500 mt-1">•</span>
+                                        <span>גשו לתפריט העליון בגיליון ולחצו על: <strong>"מערכת סקרים 📊" > "2. הוסף מילון לסקר חדש ➕"</strong>.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-indigo-500 mt-1">•</span>
+                                        <span>המערכת תסרוק אוטומטית את הקוד, תזהה את השאלות החדשות, ותייצר עבורן שורות מסודרות במילון בתחתית הגיליון! (כעת רק ודאו שהתרגום בעמודה C תקין).</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Option B -->
+                            <div class="bg-slate-50 rounded-xl p-5 border border-slate-100 shadow-sm">
+                                <div class="flex items-center gap-2 mb-3 text-indigo-700">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                    <h3 class="font-bold text-lg">אם הוספתם כפתור חדש</h3>
+                                </div>
+                                <p class="text-sm font-semibold text-slate-500 mb-2">למשל כפתור מספר 4 ("גרוע"):</p>
+                                <ul class="space-y-2 text-sm text-slate-700">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-indigo-500 mt-1">•</span>
+                                        <span>רדו לחלק של "מילון כפתורים" (הטבלה למטה בעלת 3 העמודות) והוסיפו שורה חדשה וריקה בתחתית.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-indigo-500 mt-1">•</span>
+                                        <span><strong>עמודה A:</strong> הקלידו <code>כללי</code></span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-indigo-500 mt-1">•</span>
+                                        <span><strong>עמודה B:</strong> המספר החדש (למשל <code>4</code>)</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-indigo-500 mt-1">•</span>
+                                        <span><strong>עמודה C:</strong> הטקסט שיוצג (למשל <code>גרוע</code>)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <button onclick="toggleAccordion('step3')" class="w-full px-6 py-5 flex items-center justify-between focus:outline-none hover:bg-slate-50 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 flex items-center justify-center bg-emerald-500 text-white font-bold rounded-full text-lg shadow-inner">
+                            3
+                        </div>
+                        <h2 class="text-xl font-bold text-slate-800 text-right">הפקת דשבורד וגרפים 📈</h2>
+                    </div>
+                    <svg id="icon-step3" class="w-6 h-6 text-slate-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                
+                <div id="content-step3" class="accordion-content">
+                    <div class="px-6 pb-6 pt-2 border-t border-slate-100">
+                        <p class="mb-4 text-slate-600">כדי לראות את התוצאות בצורה ויזואלית ומרשימה, אין צורך לחשב שום דבר ידנית:</p>
+                        
+                        <div class="flex items-start gap-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100">
+                            <div class="bg-emerald-100 p-2 rounded-full mt-1">
+                                <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
+                            </div>
+                            <div class="space-y-2 text-slate-700">
+                                <p><strong>1.</strong> ודאו שיש לכם כבר מספר הצבעות בגיליון "הצבעות".</p>
+                                <p><strong>2.</strong> גשו לתפריט העליון: <strong>"מערכת סקרים 📊" > "4. הפק דשבורד גרפים 📈"</strong>.</p>
+                                <p><strong>3.</strong> המערכת תייצר עבורכם באופן אוטומטי לשונית חדשה בשם <strong>"דשבורד_גרפים"</strong>.</p>
+                                <p><strong>4.</strong> בלשונית זו תמצאו טבלאות סיכום וגרף עוגה תלת-ממדי לכל שאלה וסקר בנפרד, מוכנים להצגה או להדפסה!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <button onclick="toggleAccordion('step4')" class="w-full px-6 py-5 flex items-center justify-between focus:outline-none hover:bg-slate-50 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 flex items-center justify-center bg-purple-600 text-white font-bold rounded-full text-lg shadow-inner">
+                            4
+                        </div>
+                        <h2 class="text-xl font-bold text-slate-800 text-right">שליחה דרך מערכות דיוור (פולסים, רב-מסר וכו') 📧</h2>
+                    </div>
+                    <svg id="icon-step4" class="w-6 h-6 text-slate-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                
+                <div id="content-step4" class="accordion-content">
+                    <div class="px-6 pb-6 pt-2 border-t border-slate-100">
+                        <p class="mb-4 text-slate-600">רוצים לשלוח את הסקר לאלפי מנויים דרך מערכת הדיוור המקצועית שלכם (כמו פולסים, סמוב או רב-מסר)? גם כאן, אין צורך לגעת בקוד - תנו לבינה המלאכותית להכין אותו עבורכם!</p>
+                        
+                        <div class="space-y-6">
+                            <ol class="list-decimal list-inside space-y-6 text-slate-700">
+                                <li class="font-medium">
+                                    <span class="font-bold text-slate-900">הכנת הנתונים:</span> העתיקו את קוד ה-HTML של הסקר מתא <strong class="text-blue-600 bg-blue-50 px-1 rounded">B8</strong>. בנוסף, העתיקו את "כתובת השרת" שלכם (הקישור) מתוך תא <strong class="text-blue-600 bg-blue-50 px-1 rounded">B2</strong> בגיליון ההגדרות.
+                                </li>
+                                
+                                <li class="font-medium">
+                                    <span class="font-bold text-slate-900">בקשו מהבינה המלאכותית להתאים את הקוד:</span>
+                                    <div class="mt-4 prompt-box rounded-lg p-4 shadow-sm relative group">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <span class="text-sm font-semibold text-purple-400">💬 תבנית התאמה למערכת דיוור</span>
+                                            <button onclick="copyToClipboard('prompt3')" class="text-slate-400 hover:text-white transition-colors flex items-center gap-1 text-sm bg-slate-700/50 px-2 py-1 rounded">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                                העתק
+                                            </button>
+                                        </div>
+                                        <p id="prompt3" class="text-slate-300 font-light leading-relaxed whitespace-pre-line dir-rtl">הנה קוד HTML של סקר במייל:
+[הדבק כאן את הקוד מתא B8]
+
+אני רוצה לשלוח את הסקר דרך מערכת הדיוור שלי ([ציין את שם המערכת, למשל: פולסים / רב-מסר / סמוב]). 
+אנא בצע עבורי 2 שינויים בקוד:
+1. החלף את כל המילים {{SERVER_URL}} בכתובת השרת שלי: [הדבק כאן את הקישור מתא B2].
+2. החלף את כל המילים {{EMAIL}} בתגית המייל הדינמית של מערכת הדיוור שלי (למשל ##Email## בפולסים, או [email] בסמוב).
+
+החזר לי את הקוד המוכן להעתקה.</p>
+                                    </div>
+                                </li>
+                                
+                                <li class="font-medium">
+                                    <span class="font-bold text-slate-900">הדבקה במערכת הדיוור:</span> העתיקו את הקוד המוכן שהבינה המלאכותית החזירה לכם. כעת, צרו קמפיין חדש במערכת הדיוור שלכם, והדביקו את הקוד לתוך רכיב של "בלוק קוד" (HTML Block). זהו, הכל מוכן לשליחה וההצבעות יזרמו אוטומטית לגיליון!
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer / Credits -->
+        <footer class="mt-16 pt-8 border-t border-slate-200 text-center">
+            <p class="text-slate-500 text-sm">
+                פותח על ידי <a href="https://mytovmail.github.io/Good-heart/" target="_blank" class="text-blue-600 font-bold hover:underline">"לב טוב"</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast">הטקסט הועתק בהצלחה!</div>
+
+    <script>
+        // Accordion functionality
+        function toggleAccordion(stepId) {
+            const content = document.getElementById('content-' + stepId);
+            const icon = document.getElementById('icon-' + stepId);
+            
+            if (content.classList.contains('active')) {
+                // Close
+                content.style.maxHeight = '0px';
+                content.classList.remove('active');
+                icon.style.transform = 'rotate(0deg)';
+                content.style.paddingTop = '0';
+                content.style.paddingBottom = '0';
+            } else {
+                // Open
+                content.classList.add('active');
+                // Calculate actual height needed
+                const scrollHeight = content.scrollHeight;
+                content.style.maxHeight = scrollHeight + 100 + 'px'; // +100 for some breathing room
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Copy to clipboard fallback (required due to iframe constraints)
+        function copyToClipboard(elementId) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            const textArea = document.createElement("textarea");
+            textArea.value = textToCopy;
+            
+            // Move it off-screen to avoid scrolling or visual jumping
+            textArea.style.position = "fixed";
+            textArea.style.top = "-9999px";
+            textArea.style.left = "-9999px";
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if(successful) {
+                    showToast('הפרומפט הועתק בהצלחה! תוכלו להדביק אותו ל-AI.');
+                } else {
+                    showToast('ההעתקה נכשלה, נסו להעתיק ידנית.');
+                }
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+                showToast('שגיאה בהעתקה.');
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        // Toast display functionality
+        let toastTimeout;
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.innerText = message;
+            toast.classList.add("show");
+            
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(function(){ 
+                toast.classList.remove("show"); 
+            }, 3000);
+        }
+
+        // Open the first step by default when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            toggleAccordion('step1');
+        });
+    </script>
+</body>
+</html>
